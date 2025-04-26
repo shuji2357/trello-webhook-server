@@ -7,6 +7,15 @@ export default async function handler(req, res) {
         return res.status(200).send('OK');
     } else if (req.method === 'POST') {
         const body = req.body;
+
+        // ここでイベントタイプをチェック
+        const eventType = body?.action?.type;
+
+        if (eventType !== 'createCard') {
+            console.log(`無視するイベント: ${eventType}`);
+            return res.status(200).send('OK');
+        }
+
         const cardName = body?.action?.data?.card?.name || "カード名不明";
         const boardName = body?.action?.data?.board?.name || "ボード名不明";
 
