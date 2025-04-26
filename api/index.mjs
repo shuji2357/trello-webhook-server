@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"; // 👈 あなたのWebhook URLに差し替え！
+const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"; // 👈 あなたのWebhook URLに差し替え！
 
 export default async function handler(req, res) {
     if (req.method === 'HEAD') {
