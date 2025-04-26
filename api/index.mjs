@@ -1,4 +1,4 @@
-const axios = require('axios'); // Slack送信用
+import axios from 'axios';
 
 const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"; // 👈 あなたのWebhook URLに差し替え！
 
