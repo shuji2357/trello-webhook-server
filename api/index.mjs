@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     } else if (req.method === 'POST') {
         const body = req.body;
 
-        // ここでイベントタイプをチェック
         const eventType = body?.action?.type;
 
         if (eventType !== 'createCard') {
@@ -18,9 +17,10 @@ export default async function handler(req, res) {
 
         const cardName = body?.action?.data?.card?.name || "カード名不明";
         const boardName = body?.action?.data?.board?.name || "ボード名不明";
+        const memberFullName = body?.action?.memberCreator?.fullName || "ユーザー不明";
 
         const message = {
-            text: `📢 Trello通知\nボード「${boardName}」に新しいカード「${cardName}」が作成されました！`
+            text: `📢 Trello通知\n👤 *${memberFullName}* さんが、ボード「${boardName}」に新しいカード「${cardName}」を作成しました。`
         };
 
         try {
