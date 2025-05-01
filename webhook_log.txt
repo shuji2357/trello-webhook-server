@@ -1,6 +1,0 @@
-============================ 
-登録中: Board 67bd2da8b599e3222d8e38b0 (No. 1) 
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   202  100    61  100   141    155    359 --:--:-- --:--:-- --:--:--   516100   202  100    61  100   141    155    358 --:--:-- --:--:-- --:--:--   515
-A webhook with that callback, model, and token already exists✅ 登録成功: Board 67bd2da8b599e3222d8e38b0 
