@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
+const SLACK_WEBHOOK_URL2 = process.env.SLACK_WEBHOOK_URL2;
 
 export default async function handler(req, res) {
     if (req.method === 'HEAD') {
@@ -9,7 +10,7 @@ export default async function handler(req, res) {
         const body = req.body;
         const eventType = body?.action?.type;
 
-        // カード追加時
+        // カード追加時（通常のWebhook）
         if (eventType === 'createCard') {
             const cardName = body?.action?.data?.card?.name || "カード名不明";
             const boardName = body?.action?.data?.board?.name || "ボード名不明";
@@ -29,7 +30,7 @@ export default async function handler(req, res) {
             }
         }
 
-        // カードが「対応完了」に移動したとき
+        // 「対応完了」に移動したとき（別のWebhook）
         if (eventType === 'updateCard') {
             const listAfter = body?.action?.data?.listAfter?.name;
             const cardName = body?.action?.data?.card?.name;
@@ -42,17 +43,17 @@ export default async function handler(req, res) {
                 };
 
                 try {
-                    await axios.post(SLACK_WEBHOOK_URL, message);
-                    console.log("Slack通知成功:", message.text);
+                    await axios.post(SLACK_WEBHOOK_URL2, message);
+                    console.log("完了通知Slack送信成功:", message.text);
                     return res.status(200).send('OK');
                 } catch (error) {
-                    console.error("Slack通知失敗:", error);
-                    return res.status(500).send('Slack通知失敗');
+                    console.error("完了通知Slack送信失敗:", error);
+                    return res.status(500).send('完了通知Slack送信失敗');
                 }
             }
         }
 
-        // その他のイベントは無視
+        // その他のイベント
         console.log(`無視するイベント: ${eventType}`);
         return res.status(200).send('OK');
     }
