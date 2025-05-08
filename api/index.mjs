@@ -36,6 +36,8 @@ export default async function handler(req, res) {
             const cardName = body?.action?.data?.card?.name;
             const boardName = body?.action?.data?.board?.name;
             const memberFullName = body?.action?.memberCreator?.fullName;
+            console.log("=== Trello Webhook Raw Body ===");
+            console.log(JSON.stringify(req.body, null, 2));
 
             if (listAfter === '対応完了') {
                 const message = {
